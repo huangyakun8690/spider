@@ -1,0 +1,453 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.xuxueli</groupId>
+		<artifactId>xxl-job</artifactId>
+		<version>1.8.2-SNAPSHOT</version>
+	</parent>
+	<artifactId>job-executor-springboot-yunting</artifactId>
+	<packaging>jar</packaging>
+	<name>${project.artifactId}</name>
+	<description>Example executor project for spring boot.</description>
+	<url>http://www.xuxueli.com/</url>
+	<properties>
+	<plugin.jacoco.version>0.7.6.201602180812</plugin.jacoco.version>
+<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+		<spring-boot.version>
+			1.3.8.RELEASE</spring-boot.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.7</java.version>
+		<rocketmq_ver>4.0.0-incubating</rocketmq_ver>
+	</properties>
+	<repositories>
+		<repository>
+			<id>myRepository</id>
+			<name>Repository for me</name>
+			<url>http://192.168.100.10/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<!-- Import dependency management from Spring Boot (依赖管理：继承一些默认的依赖，工程需要依赖的jar包的管理，申明其他dependency的时候就不需要version) -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-parent</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- <dependency> -->
+		<!-- <groupId>commons-pool</groupId> -->
+		<!-- <artifactId>commons-pool</artifactId> -->
+		<!-- <version>1.5.5</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.commons</groupId> -->
+		<!-- <artifactId>commons-pool2</artifactId> -->
+		<!-- <version>2.4.2</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.8.2</version>
+			<!-- <scope>system</scope> -->
+			<!-- <systemPath>C:\Users\huangyakun\Desktop\jedis-2.7.1.jar</systemPath> -->
+		</dependency>
+		<dependency>
+			<groupId>com.ustcinfo.ptp</groupId>
+			<artifactId>yunting-core</artifactId>
+			<version>0.0.3-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+				<!-- <exclusion> -->
+				<!-- <groupId>com.ustcinfo.ptp</groupId> -->
+				<!-- <artifactId>ptp-framework-service</artifactId> -->
+				<!-- </exclusion> -->
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<!-- spring-boot-starter-web (提供了对web的支持，包含了spring webmvc和tomcat等web开发的特性) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- c3p0 -->
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.5.2</version>
+		</dependency>
+		<!-- mysql-connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!-- xxl-job-core -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.xuxueli</groupId> -->
+		<!-- <artifactId>xxl-job-core</artifactId> -->
+		<!-- <version>${project.parent.version}</version> -->
+		<!-- <exclusions> -->
+		<!-- <exclusion> -->
+		<!-- <groupId>org.slf4j</groupId> -->
+		<!-- <artifactId>slf4j-api</artifactId> -->
+		<!-- </exclusion> -->
+		<!-- </exclusions> -->
+		<!-- </dependency> -->
+
+		<dependency>
+			<groupId>com.xuxueli</groupId>
+			<artifactId>xxl-job-core</artifactId>
+			<version>1.8.2-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty.websocket</groupId>
+			<artifactId>websocket-client</artifactId>
+			<version>9.2.18.v20160721</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.redisson</groupId>
+			<artifactId>redisson</artifactId>
+			<version>2.7.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+			<version>2.8.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-client</artifactId>
+			<version>${rocketmq_ver}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-common</artifactId>
+			<version>${rocketmq_ver}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-remoting</artifactId>
+			<version>${rocketmq_ver}</version>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>com.cmos</groupId> -->
+		<!-- <artifactId>cmos-logger</artifactId> -->
+		<!-- <version>1.2.0-SNAPSHOT</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>2.5.3</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.yammer.metrics</groupId>
+			<artifactId>metrics-core</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>2.11.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.xerial.snappy</groupId>
+			<artifactId>snappy-java</artifactId>
+			<version>1.1.1.7</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+			<version>1.2.2.RELEASE</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+
+			<!-- spring-boot-maven-plugin (提供了直接运行项目的插件：如果是通过parent方式继承spring-boot-starter-parent则不用此插件) -->
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <configuration>
+        <skip>false</skip>
+        <testFailureIgnore>true</testFailureIgnore>
+        <argLine>${surefireArgLine}</argLine>
+    </configuration>
+</plugin>
+<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.7.8</version>
+    <configuration>
+        <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+        <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+        <skip>${skipTests}</skip>
+        <output>file</output>
+        <append>true</append>
+    </configuration>
+    <executions>
+        <execution>
+            <id>pre-unit-test</id>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+                <propertyName>surefireArgLine</propertyName>
+            </configuration>
+        </execution>
+        <execution>
+            <id>post-unit-test</id>
+            <phase>test</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+		
+
+		</plugins>
+	</build>
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://192.168.100.10/nexus/content/repositories/snapshots/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://192.168.100.10/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.xuxueli</groupId>
+		<artifactId>xxl-job</artifactId>
+		<version>1.8.2-SNAPSHOT</version>
+	</parent>
+	<artifactId>job-executor-springboot-yunting</artifactId>
+	<packaging>jar</packaging>
+
+	<name>${project.artifactId}</name>
+	<description>Example executor project for spring boot.</description>
+	<url>http://www.xuxueli.com/</url>
+
+	<properties>
+		<spring-boot.version>1.3.8.RELEASE</spring-boot.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.7</java.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<!-- Import dependency management from Spring Boot (依赖管理：继承一些默认的依赖，工程需要依赖的jar包的管理，申明其他dependency的时候就不需要version) -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-parent</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+<!-- 		<dependency> -->
+<!--     <groupId>commons-pool</groupId> -->
+<!--     <artifactId>commons-pool</artifactId> -->
+<!--     <version>1.5.5</version> -->
+<!-- </dependency> -->
+<!-- <dependency> -->
+<!--        <groupId>org.apache.commons</groupId> -->
+<!--        <artifactId>commons-pool2</artifactId> -->
+<!--        <version>2.4.2</version> -->
+<!--  </dependency> -->
+<dependency>
+<groupId>redis.clients</groupId>
+	<artifactId>jedis</artifactId>
+	<version>2.7.3</version>
+	</dependency>
+		<dependency>
+			<groupId>com.ustcinfo.ptp</groupId>
+			<artifactId>yunting-core</artifactId>
+			<version>0.0.3-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+<!-- 				<exclusion> -->
+<!-- 					<groupId>com.ustcinfo.ptp</groupId> -->
+<!-- 	<artifactId>ptp-framework-service</artifactId> -->
+<!-- 				</exclusion> -->
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<!-- spring-boot-starter-web (提供了对web的支持，包含了spring webmvc和tomcat等web开发的特性) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- c3p0 -->
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.5.2</version>
+		</dependency>
+		<!-- mysql-connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!-- xxl-job-core -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.xuxueli</groupId> -->
+		<!-- <artifactId>xxl-job-core</artifactId> -->
+		<!-- <version>${project.parent.version}</version> -->
+		<!-- <exclusions> -->
+		<!-- <exclusion> -->
+		<!-- <groupId>org.slf4j</groupId> -->
+		<!-- <artifactId>slf4j-api</artifactId> -->
+		<!-- </exclusion> -->
+		<!-- </exclusions> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>com.xuxueli</groupId>
+			<artifactId>xxl-job-core</artifactId>
+			<version>1.8.2-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty.websocket</groupId>
+			<artifactId>websocket-client</artifactId>
+			<version>9.2.18.v20160721</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.redisson</groupId>
+			<artifactId>redisson</artifactId>
+			<version>2.7.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+			<version>2.8.4</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- spring-boot-maven-plugin (提供了直接运行项目的插件：如果是通过parent方式继承spring-boot-starter-parent则不用此插件) -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+
+>>>>>>> 5d68a508ba5119927fb3da65abcb3ee27ad9168a
+</project>

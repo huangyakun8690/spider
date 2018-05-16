@@ -1,0 +1,66 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/tx
+	    http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+	<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="location" value="classpath:META-INF/res/resource-development.properties" />
+	</bean>
+	<import resource="classpath*:META-INF/spring/dao-context.xml"/>
+	<import resource="classpath*:META-INF/spring/cache-context.xml"/>
+	<import resource="classpath*:META-INF/spring/core-context.xml"/>
+	
+	<!-- 项目中配置spring 自动扫描类路径，生成spring bean -->
+	<context:component-scan base-package="com.ustcinfo.ptp" />
+	<context:component-scan base-package="com.ustcinfo.tpc" />
+	<!-- <context:component-scan base-package="com.ustcinfo.tpc.framework.web"/> -->
+
+	<!-- 项目中配置Hibernate自动扫描entity类路径 -->
+	<util:list id="hibernatePackagesToScan" list-class="java.util.ArrayList"
+		value-type="java.lang.String">
+		<value>com.ustcinfo</value>
+<!-- 		<value>com.ustcinfo.tpc.framework.web.model</value> -->
+	</util:list>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/tx
+	    http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+	<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="location" value="classpath:META-INF/res/resource-development.properties" />
+	</bean>
+	<import resource="classpath*:META-INF/spring/dao-context.xml"/>
+	<import resource="classpath*:META-INF/spring/cache-context.xml"/>
+	<import resource="classpath*:META-INF/spring/core-context.xml"/>
+	
+	<!-- 项目中配置spring 自动扫描类路径，生成spring bean -->
+	<context:component-scan base-package="com.ustcinfo.ptp" />
+	<context:component-scan base-package="com.ustcinfo.tpc" />
+	<!-- <context:component-scan base-package="com.ustcinfo.tpc.framework.web"/> -->
+
+	<!-- 项目中配置Hibernate自动扫描entity类路径 -->
+	<util:list id="hibernatePackagesToScan" list-class="java.util.ArrayList"
+		value-type="java.lang.String">
+		<value>com.ustcinfo</value>
+<!-- 		<value>com.ustcinfo.tpc.framework.web.model</value> -->
+	</util:list>
+>>>>>>> 5d68a508ba5119927fb3da65abcb3ee27ad9168a
+</beans>

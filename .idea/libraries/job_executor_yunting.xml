@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="job-executor-yunting">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/target/job-executor-yunting.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

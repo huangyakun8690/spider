@@ -1,0 +1,64 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- 启动时加载sql配置文件 -->
+<!-- 	<bean class="com.starit.common.dao.support.CustomSQL" /> -->
+	<bean id="springApplicationContextHolder"
+		class="com.ustcinfo.tpc.framework.core.spring.SpringApplicationContextHolder"></bean>
+
+	<bean id="druid-stat-interceptor"
+		class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
+	</bean>
+
+	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut"
+		scope="prototype">
+		<property name="patterns">
+			<list>
+				<value>com.ustcinfo.tpc.framework.web.controller.*</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="springApplicationContextUtils" class="com.ustcinfo.ptp.yunting.support.SpringApplicationContextUtils" />
+	<aop:config>
+		<aop:advisor advice-ref="druid-stat-interceptor"
+			pointcut-ref="druid-stat-pointcut" />
+	</aop:config>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- 启动时加载sql配置文件 -->
+	<bean class="com.starit.common.dao.support.CustomSQL" />
+	<bean id="springApplicationContextHolder"
+		class="com.ustcinfo.tpc.framework.core.spring.SpringApplicationContextHolder"></bean>
+
+	<bean id="druid-stat-interceptor"
+		class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
+	</bean>
+
+	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut"
+		scope="prototype">
+		<property name="patterns">
+			<list>
+				<value>com.ustcinfo.tpc.framework.web.controller.*</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="springApplicationContextUtils" class="com.ustcinfo.ptp.yunting.support.SpringApplicationContextUtils" />
+	<aop:config>
+		<aop:advisor advice-ref="druid-stat-interceptor"
+			pointcut-ref="druid-stat-pointcut" />
+	</aop:config>
+>>>>>>> 5d68a508ba5119927fb3da65abcb3ee27ad9168a
+</beans>

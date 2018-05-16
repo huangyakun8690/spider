@@ -1,0 +1,194 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<bean id="sequenceFactory" class="com.starit.common.dao.key.SequenceFactory">
+		<property name="uniqueTableApp">
+			<bean class="com.starit.common.dao.key.impl.DefaultUniqueTableApp">
+				<constructor-arg index="0" ref="dataSource" />
+			</bean>
+		</property>
+		<property name="transactionTemplate" ref="transactionTemplate" />
+	</bean>
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="initialSize" value="10" />
+		<property name="minIdle" value="1" />
+		<property name="maxActive" value="1000" />
+
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+
+		<property name="validationQuery" value="${jdbc.validationQuery}" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="true" />
+		<property name="maxOpenPreparedStatements" value="-1" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="1800" />
+		<property name="logAbandoned" value="true" />
+
+		<property name="filters" value="stat" />
+	</bean>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg index="0" ref="dataSource" />
+	</bean>
+
+	<bean id="sqlBuilder"
+		class="com.ustcinfo.tpc.framework.core.support.SqlBuilderFactoryBean" />
+		
+	<bean class="com.starit.common.dao.jdbc.NamedParameterJdbcPager">
+		<constructor-arg ref="dataSource" />
+		<property name="builder" ref="sqlBuilder" />
+	</bean>
+
+	<!-- 对任何带有@Repository 注解的对象自动激活其数据访问异常转换 -->
+	<bean id="persistenceManager"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+
+	<!-- 配置sessionFactory, 注意这里引入的包的不同 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" ref="hibernatePackagesToScan" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext
+				</prop>
+				<prop key="hibernate.jdbc.batch_size">100</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+
+			</props>
+		</property>
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="transactionTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<bean id="sequenceFactory" class="com.starit.common.dao.key.SequenceFactory">
+		<property name="uniqueTableApp">
+			<bean class="com.starit.common.dao.key.impl.DefaultUniqueTableApp">
+				<constructor-arg index="0" ref="dataSource" />
+			</bean>
+		</property>
+		<property name="transactionTemplate" ref="transactionTemplate" />
+	</bean>
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="initialSize" value="10" />
+		<property name="minIdle" value="1" />
+		<property name="maxActive" value="1000" />
+
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+
+		<property name="validationQuery" value="${jdbc.validationQuery}" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="true" />
+		<property name="maxOpenPreparedStatements" value="-1" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="1800" />
+		<property name="logAbandoned" value="true" />
+
+		<property name="filters" value="stat" />
+	</bean>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg index="0" ref="dataSource" />
+	</bean>
+
+	<bean id="sqlBuilder"
+		class="com.ustcinfo.tpc.framework.core.support.SqlBuilderFactoryBean" />
+		
+	<bean class="com.starit.common.dao.jdbc.NamedParameterJdbcPager">
+		<constructor-arg ref="dataSource" />
+		<property name="builder" ref="sqlBuilder" />
+	</bean>
+
+	<!-- 对任何带有@Repository 注解的对象自动激活其数据访问异常转换 -->
+	<bean id="persistenceManager"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+
+	<!-- 配置sessionFactory, 注意这里引入的包的不同 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" ref="hibernatePackagesToScan" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext
+				</prop>
+				<prop key="hibernate.jdbc.batch_size">100</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+
+			</props>
+		</property>
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="transactionTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+>>>>>>> 5d68a508ba5119927fb3da65abcb3ee27ad9168a
+</beans>

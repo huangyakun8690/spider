@@ -1,0 +1,73 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+	<define  name="containerId" class="com.xxl.job.executor.util.LogbackContainerId" /> 
+ 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+ 		<encoder>
+ 			<pattern>%date{yyyy-MM-dd HH:mm:ss.SSS}|%msg%n
+ 			</pattern>
+		</encoder>
+ 	</appender>
+	<appender name="rollingFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/home/wltx/yuncai/logs/yunting.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/home/wltx/yuncai/logs/yunting.log.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<!-- <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level -->
+			<!-- %logger{36} - %msg%n -->
+			<!-- </pattern> -->
+			<pattern>%date{yyyy-MM-dd HH:mm:ss.SSS}|%msg%n</pattern>
+			<charset class="java.nio.charset.Charset">utf-8</charset>
+		</encoder>
+	</appender>
+	<appender name="ASYNC_Queue" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>1000</queueSize>
+		<appender-ref ref="rollingFile" />
+	</appender>
+
+	<root level="info">
+		<appender-ref ref="ASYNC_Queue" />
+ 		<appender-ref ref="console" />
+	</root>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+ 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+ 		<encoder>
+ 			<pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level%logger{36} - %msg%n
+ 			</pattern>
+		</encoder>
+ 	</appender>
+	<appender name="rollingFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>./logs/yunting.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>./logs/yunting.log.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<!-- <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level -->
+			<!-- %logger{36} - %msg%n -->
+			<!-- </pattern> -->
+			<pattern>%msg%n</pattern>
+			<charset class="java.nio.charset.Charset">utf-8</charset>
+		</encoder>
+	</appender>
+	<appender name="ASYNC_Queue" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>1000</queueSize>
+		<appender-ref ref="rollingFile" />
+	</appender>
+
+	<root level="info">
+		<appender-ref ref="ASYNC_Queue" />
+ 		<appender-ref ref="console" />
+	</root>
+>>>>>>> 5d68a508ba5119927fb3da65abcb3ee27ad9168a
+</configuration>

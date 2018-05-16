@@ -1,0 +1,39 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+
+<included>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d %p [%c] - &lt;%m&gt;%n</pattern>
+		</encoder>
+	</appender>
+
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+	<logger name="org.springframework.aop.framework.Cglib2AopProxy"
+		level="INFO" />
+</included>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+<included>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d %p [%c] - &lt;%m&gt;%n</pattern>
+		</encoder>
+	</appender>
+
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+	<logger name="org.springframework.aop.framework.Cglib2AopProxy"
+		level="INFO" />
+</included>
+>>>>>>> 5d68a508ba5119927fb3da65abcb3ee27ad9168a

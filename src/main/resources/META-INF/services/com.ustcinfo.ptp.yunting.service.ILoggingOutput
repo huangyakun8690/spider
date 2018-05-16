@@ -1,0 +1,2 @@
+com.ustcinfo.ptp.yunting.service.impl.KafKaLoggingOutput
+com.ustcinfo.ptp.yunting.service.impl.CommonLoggingOutput
